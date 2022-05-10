@@ -1,0 +1,57 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page errorPage="error.jsp" %>
+<%@ page import="java.sql.*" %>
+<%@ page import="model.LoanModel" %>
+<!DOCTYPE html>
+<% 	
+	LoanModel lnMdl = (LoanModel) session.getAttribute("lnMdl");
+%>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+    <form name="applyLoan" action="./LoanController" method="post">
+        <fieldset>
+            <legend>Account Info</legend>
+            <label for="userid">Account Holder Id:</label>
+            <input type="number" id="userid" name="cust_Id" value=<%=lnMdl.customerInfo[] %> readonly required><br>
+            <label for="username">User Name:</label>
+            <input type="text" id="username" name="user_Name" value="vik" disabled><br>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="nesh" readonly><br>
+            For verification purposes,<br>
+            <label for="password">Please Enter Your Password:</label>
+            <input type="password" autocomplete="off">
+        </fieldset>
+        <fieldset>
+            <legend>Supporting Documents</legend>
+            <label for="salary">Monthly Income:</label>
+            <input type="number" id="salary" name="salary" title="In SGD S$"><br>
+            <label for="payslip">Please upload your latest payslip:</label><br>
+            <input type="file"  id="payslip" name="payslip">
+        </fieldset>
+
+        <fieldset>
+            <legend>Loan Info</legend>
+            <label for="loantype">Loan type:</label>
+            <select name="loan_type" id="loantype" required>
+                <option value="Pers" checked>Personal</option><br>
+            </select>
+            <label for="loanamount" >Amount</label>
+            <input type="number" min="2000" max="10000" step=".01" id="loanamount" name="loan_amount" required>
+            <label for="loanterm">Loan Tenure:</label>
+            <select name="loan_term_mths" id="loanterm" required>
+                <option value="12" checked>12 Months</option>
+                <option value="24">24 Months</option>
+            </select><br>
+            <label for="interest">Annual Interest Rate</label>
+            <input type="number" readonly value="4.5">
+            <input type="submit" value="Apply">
+        </fieldset>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+        <%@ page errorPage="error.jsp" %>
+<%@ page import="java.sql.*" %>
+<!DOCTYPE html>
+<% Integer loanStatus = (Integer) request.getAttribute("loanStatus");
+	Integer paymentStatus = (Integer) request.getAttribute("repaymentStatus");
+	
+%>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<body>
+	
+		
+      <p>Status <%= request.getAttribute("loanStatus") %></p>
+      <p>Repayment Status: </p>
+      <h1>Coin Flipper</h1>
+      <p>Flipping a coin...</p>
+      <% if(loanStatus.intValue() == 0){ %>
+      	<p>You have no loans!</p>
+      <% } else{ %>
+      <% 		String loanTable[][] = (String[][]) request.getAttribute("loanTable");
+      			for(int i=0 ; i <= loanTable.length ; i++) {%>
+      				<p>Tails!<%= loanTable[i][0] %></p>
+      				<p>Tails!<%= loanTable[i][1] %></p>
+      				<p>Tails!<%= loanTable[i][2] %></p>
+      				<p>Tails!<%= loanTable[i][3] %></p>
+      				<p>Tails!<%= loanTable[i][4] %></p>
+      				<p>Tails!<%= loanTable[i][5] %></p>
+   	  <% 		}
+      	} %>
+    <hr>
+   </body>
+</body>
+</html>
